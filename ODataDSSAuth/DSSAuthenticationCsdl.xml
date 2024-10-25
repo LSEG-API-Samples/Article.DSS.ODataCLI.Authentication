@@ -1,0 +1,34 @@
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:DataServices>
+    <Schema Namespace="DataScope.Select.Api.Authentication" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <ComplexType Name="Credentials">
+        <Property Name="Username" Type="Edm.String" />
+        <Property Name="Password" Type="Edm.String" />
+        <Annotation Term="Org.OData.Core.V1.Description" String="Credentials for authentication." />
+        <Annotation Term="Org.OData.Core.V1.LongDescription" String="Talk to your DataScope representative about getting DataScope credentials.  The API accepts the same credentials used for FTP and Web GUI." />
+      </ComplexType>
+      <ComplexType Name="ValidateTokenResult">
+        <Property Name="IsValid" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Expires" Type="Edm.DateTimeOffset" />
+      </ComplexType>
+      <Action Name="RequestToken">
+        <Parameter Name="Credentials" Type="DataScope.Select.Api.Authentication.Credentials" />
+        <ReturnType Type="Edm.String" Unicode="false" />
+      </Action>
+      <Function Name="ValidateToken">
+        <Parameter Name="Token" Type="Edm.String" Unicode="false" />
+        <ReturnType Type="DataScope.Select.Api.Authentication.ValidateTokenResult" />
+      </Function>
+      <EntityContainer Name="Authentication">
+        <ActionImport Name="RequestToken" Action="DataScope.Select.Api.Authentication.RequestToken">
+          <Annotation Term="Org.OData.Core.V1.Description" String="Returns an authentication token that must be applied to all requests." />
+          <Annotation Term="Org.OData.Core.V1.LongDescription" String="" />
+        </ActionImport>
+        <FunctionImport Name="ValidateToken" Function="DataScope.Select.Api.Authentication.ValidateToken" IncludeInServiceDocument="true">
+          <Annotation Term="Org.OData.Core.V1.Description" String="This method is deprecated.  Please do not use.  It will be removed at some point in the future. When using the toolkit, use the token to create a context.  There are parameters on the context to handle an invalid token. When you are using the REST API without the toolkit, pass the token on the request header.  If it is invalid, you will receive an authorization error.  At this point you can call the RequestToken method to retrieve a new token and try the request again." />
+          <Annotation Term="Org.OData.Core.V1.LongDescription" String="" />
+        </FunctionImport>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
