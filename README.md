@@ -1,1 +1,1 @@
-# [Article.DSS.ODataCLI.Authentication](https://developers.lseg.com/en/article-catalog/article/using--net-odatacli-with-dss-rest-api-authentication)
+### This is an example of this [Using .NET ODataCLI with DSS REST API Authentication](https://developers.lseg.com/en/article-catalog/article/using--net-odatacli-with-dss-rest-api-authentication) article. 
